@@ -15,4 +15,4 @@ A clean and modern weather app
 * **CSS3**
 * **JavaScript (ES6+)**
 * **Vite** as a build tool
-* **VisualCrossing API** for weather data
+* **Open-Meteo API** for weather data
