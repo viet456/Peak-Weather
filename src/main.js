@@ -1,6 +1,7 @@
 import './style.css'
 import { getWeather } from './api/weather'
 import { getLocations } from './api/locations';
+import { formatLocationForSearch, formatLocationForDisplay } from './utils/formatLocation';
 
 // check location matches
 const searchResults = document.getElementById('search-results');
@@ -13,13 +14,15 @@ async function showLocationDropdown(input) {
   locations.forEach(location => {
     const locationEl = document.createElement('div');
     locationEl.classList.add('locationEl');
-
     // only include admin1 for countries that use states/provinces
-    const stateCountries = ['United States', 'Canada', 'Australia', 'Brazil', 'India', 'Mexico', 'United Kingdom', 'Argentina'];
-    const locationText = stateCountries.includes(location.country)
-                        ? `${location.name}, ${location.admin1}, ${location.country}`
-                        : `${location.name}, ${location.country}`;
-    locationEl.textContent = locationText;
+    locationEl.textContent = formatLocationForSearch(location);
+    // click on location to display its weather
+    locationEl.addEventListener('mousedown', async() => {
+      const lat = location.latitude;
+      const long = location.longitude;
+      const weatherData = await getWeather(lat, long);
+      displayWeather(weatherData, location);
+    })
     searchResults.append(locationEl);
   });;
 } 
@@ -40,3 +43,5 @@ search.addEventListener('blur', () => {
 search.addEventListener('focus', () => {
   searchResults.classList.remove('hidden');
 })
+
+getWeather(37.77, 122.41);
