@@ -32,3 +32,11 @@ search.addEventListener('input', (e) => {
     showLocationDropdown(e.target.value);
   }, 300);
 });
+
+// hide search results when search bar is clicked off of 
+search.addEventListener('blur', () => {
+  searchResults.classList.add('hidden')
+})
+search.addEventListener('focus', () => {
+  searchResults.classList.remove('hidden');
+})
