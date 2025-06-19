@@ -14,14 +14,15 @@
             class="header__search-input"
             type="search" 
             name="search" 
-            id="search"
-            placeholder="Enter location or zip code">
+            id="searchInput"
+            placeholder="Enter location or zip code"
+            autocomplete="off">
           <div class="header__search-results" id="search-results"></div>
         </div>
       </header>
       
       <template id="weather-data-template">
-        <div class="weather">
+        <div class="weather-container">
           <section class="weather__current">
             <header class="weather__current-header">
               <div class="weather__current-location js-location"></div>
