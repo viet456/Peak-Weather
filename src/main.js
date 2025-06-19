@@ -16,12 +16,13 @@ async function renderLocationDropdown(locations) {
   }
   searchResultsContainer.innerHTML = '';
   searchResultsContainer.classList.remove('hidden');
-
-  // if (locations.length === 0 && searchInput.value!=='') {
-  //   searchResultsContainer.innerHTML = '<div class="location-result-item">No results found</div>';
-  //   return;
-  // }
   
+  // handle no search results
+  if (locations.length === 0 && searchInput.value!=='') {
+    searchResultsContainer.innerHTML = '<div class="location-result-item">No results found</div>';
+    return;
+  }
+
   locations.forEach(location => {
     const locationEl = document.createElement('div');
     locationEl.classList.add('location-result-item');
