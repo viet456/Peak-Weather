@@ -1,9 +1,11 @@
+const apiKey = import.meta.env.VITE_GEOAPIFY_API_KEY;
+
 export async function getLocations(location) {
     if (!location) {
         return null;
     }
-    let apiUrl = `https://geocoding-api.open-meteo.com/v1/search?name=`
-        apiUrl+= `${encodeURIComponent(location)}&count=5&language=en&format=json`;
+    let apiUrl = `https://api.geoapify.com/v1/geocode/search?text=${location}`;
+        apiUrl+= `&limit=5&bias=countrycode:auto&format=json&apiKey=${apiKey}`;
     try {
         let response = await fetch(apiUrl);
         if (!response.ok) {

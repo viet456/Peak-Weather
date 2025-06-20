@@ -57,7 +57,7 @@ async function selectLocation(location) {
   searchResultsContainer.classList.add('hidden');
 
   // get weather data and display it
-  const weatherData = await getWeather(location.latitude, location.longitude);
+  const weatherData = await getWeather(location.lat, location.lon);
   displayWeather(weatherData, location);
 }
 
