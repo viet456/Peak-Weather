@@ -1,87 +1,84 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
-  </head>
-  <body>
-    <div id="app">
-      <header class="header">
-        <div class="header__logo"></div>
-        <div class="header__search">
-          <input 
-            class="header__search-input"
-            type="search" 
-            name="search" 
-            id="searchInput"
-            placeholder="Enter location or zip code"
-            autocomplete="off">
-          <div class="header__search-results" id="search-results"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+</head>
+
+<body>
+  <div id="app">
+    <header class="header">
+      <div class="header__logo"></div>
+      <div class="header__search">
+        <input class="header__search-input" type="search" name="search" id="searchInput"
+          placeholder="Enter location or zip code" autocomplete="off">
+        <div class="header__search-results" id="search-results"></div>
+      </div>
+    </header>
+    <div id="weather-container"></div>
+    <template id="weather-data-template">
+      <section class="weather__current">
+        <header class="weather__current-header">
+          <div class="weather__current-location js-location"></div>
+          <div class="weather__current-time js-time"></div>
+        </header>
+        <div class="weather__current-body">
+          <div class="weather__current-temp js-temperature"></div>
+          <div class="weather__current-profile js-weather-code"></div>
+          <div class="weather__current-day js-day-temp"></div>
+          <div class="weather__current-night js-night-temp"></div>
         </div>
-      </header>
-      
-      <template id="weather-data-template">
-        <div class="weather-container">
-          <section class="weather__current">
-            <header class="weather__current-header">
-              <div class="weather__current-location js-location"></div>
-              <div class="weather__current-time js-time"></div>
-            </header>
-            <div class="weather__current-body">
-              <div class="weather__current-temp js-temperature"></div>
-              <div class="weather__current-profile js-weather-code"></div>
-              <div class="weather__current-day js-day-temp"></div>
-              <div class="weather__current-night js-night-temp"></div>   
-            </div>
-          </section>
+      </section>
 
-          <section class="weather__today">
-            <header class="weather__today-header">
-              <div class="weather__today-location js-today-location"></div>
-              <div class="weather__today-feel js-today-feel"></div>
-              <div class="weather__today-profile js-today-code"></div>
-            </header>
-            <div class="weather__today-body">
-              <div class="weather__today-high js-temp-high"></div>
-              <div class="weather__today-low js-temp-low"></div>
-              <div class="weather__today-humidity js-humidity"></div>
-              <div class="weather__today-uv js-uv-index"></div>
-              <div class="weather__today-wind-speed js-wind-speed"></div>
-              <div class="weather__today-wind-direction js-wind-direction"></div>
-              <div class="weather__today-visibility js-visibility"></div>
-            </div>
-          </section>
-
-          <section class="weather__forecast">
-            <div class="weather__forecast-period js-period" data-period="morning">
-              <div class="weather__forecast-temp js-period-temp"></div>
-              <div class="weather__forecast-feel js-period-feel"></div>
-              <div class="weather__forecast-code js-period-code"></div>
-            </div>
-            <div class="weather__forecast-period js-period" data-period="afternoon">
-              <div class="weather__forecast-temp js-period-temp"></div>
-              <div class="weather__forecast-feel js-period-feel"></div>
-              <div class="weather__forecast-code js-period-code"></div>
-            </div>
-            <div class="weather__forecast-period js-period" data-period="evening">
-              <div class="weather__forecast-temp js-period-temp"></div>
-              <div class="weather__forecast-feel js-period-feel"></div>
-              <div class="weather__forecast-code js-period-code"></div>
-            </div>
-            <div class="weather__forecast-period js-period" data-period="overnight">
-              <div class="weather__forecast-temp js-period-temp"></div>
-              <div class="weather__forecast-feel js-period-feel"></div>
-              <div class="weather__forecast-code js-period-code"></div>
-            </div>
-          </section>
-
-          <section class="weather__hourly js-hourly"></section>
-          
-          <section class="weather__daily js-daily"></section>
+      <section class="weather__today">
+        <header class="weather__today-header">
+          <div class="weather__today-location js-today-location"></div>
+          <div class="weather__today-feel js-today-feel"></div>
+          <div class="weather__today-profile js-today-code"></div>
+        </header>
+        <div class="weather__today-body">
+          <div class="weather__today-high js-temp-high"></div>
+          <div class="weather__today-low js-temp-low"></div>
+          <div class="weather__today-humidity js-humidity"></div>
+          <div class="weather__today-uv js-uv-index"></div>
+          <div class="weather__today-wind-speed js-wind-speed"></div>
+          <div class="weather__today-wind-direction js-wind-direction"></div>
+          <div class="weather__today-visibility js-visibility"></div>
         </div>
-      </template>
-    </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+      </section>
+
+      <section class="weather__forecast">
+        <div class="weather__forecast-period js-period" data-period="morning">
+          <div class="weather__forecast-temp js-period-temp"></div>
+          <div class="weather__forecast-feel js-period-feel"></div>
+          <div class="weather__forecast-code js-period-code"></div>
+        </div>
+        <div class="weather__forecast-period js-period" data-period="afternoon">
+          <div class="weather__forecast-temp js-period-temp"></div>
+          <div class="weather__forecast-feel js-period-feel"></div>
+          <div class="weather__forecast-code js-period-code"></div>
+        </div>
+        <div class="weather__forecast-period js-period" data-period="evening">
+          <div class="weather__forecast-temp js-period-temp"></div>
+          <div class="weather__forecast-feel js-period-feel"></div>
+          <div class="weather__forecast-code js-period-code"></div>
+        </div>
+        <div class="weather__forecast-period js-period" data-period="overnight">
+          <div class="weather__forecast-temp js-period-temp"></div>
+          <div class="weather__forecast-feel js-period-feel"></div>
+          <div class="weather__forecast-code js-period-code"></div>
+        </div>
+      </section>
+
+      <section class="weather__hourly js-hourly"></section>
+
+      <section class="weather__daily js-daily"></section>
+
+    </template>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
