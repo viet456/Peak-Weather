@@ -53,8 +53,8 @@ async function handleSearch(query) {
 // handle user selection of a location
 async function selectLocation(location) {
   // update the input and hide the dropdown
-  searchInput.value = formatLocationForDisplay(location);
-  // searchResultsContainer.innerHTML = '';
+  searchInput.value = '';
+  searchInput.blur()
   searchResultsContainer.classList.add('hidden');
 
   // get weather data and display it
