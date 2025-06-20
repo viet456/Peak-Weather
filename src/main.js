@@ -1,8 +1,8 @@
 import './style.css'
 import { getWeather } from './api/weather'
 import { getLocations } from './api/locations';
-import { displayWeather } from './ui/displayWeather';
 import { formatLocationForSearch, formatLocationForDisplay } from './utils/formatLocation';
+import { displayCurrentWeather } from './ui/displayCurrent';
 
 // DOM elements
 const searchResultsContainer = document.getElementById('search-results');
@@ -59,7 +59,7 @@ async function selectLocation(location) {
 
   // get weather data and display it
   const weatherData = await getWeather(location.lat, location.lon);
-  displayWeather(weatherData, location);
+  displayCurrentWeather(weatherData, location);
 }
 
 // main initialization
