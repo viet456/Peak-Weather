@@ -47,13 +47,14 @@ async function handleSearch(query) {
   }
   const locations = await getLocations(query);
   renderLocationDropdown(locations);
+  console.log('searched');
 }
 
 // handle user selection of a location
 async function selectLocation(location) {
   // update the input and hide the dropdown
   searchInput.value = formatLocationForDisplay(location);
-  searchResultsContainer.innerHTML = '';
+  // searchResultsContainer.innerHTML = '';
   searchResultsContainer.classList.add('hidden');
 
   // get weather data and display it
@@ -63,13 +64,13 @@ async function selectLocation(location) {
 
 // main initialization
 function init() {
-  // wait 250ms after last input to pull location matches
+  // wait 200ms after last input to pull location matches
   let timeout;
   searchInput.addEventListener('input', (e) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       handleSearch(e.target.value);
-    }, 250);
+    }, 200);
   });
 
   // hide search results when search bar is clicked off of 
