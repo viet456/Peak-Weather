@@ -8,77 +8,122 @@
 </head>
 
 <body>
-  <div id="app">
-    <header class="header">
-      <div class="header__logo"></div>
-      <div class="header__search">
-        <input class="header__search-input" type="search" name="search" id="searchInput"
-          placeholder="Enter location or zip code" autocomplete="off">
-        <div class="header__search-results" id="search-results"></div>
-      </div>
+  <main id="app">
+    <header class="page-header">
+      <h1 class="page-title">Weather App</h1>
+      <form class="search-form" id="search-form" role="search">
+        <input type="search" id="search-input" class="search-form__input" placeholder="Search for a city or zip code"
+          autocomplete="off">
+        <div class="search-results" id="search-results"></div>
+      </form>
     </header>
-    <div id="weather-container"></div>
-    <template id="weather-data-template">
-      <section class="weather__current">
-        <header class="weather__current-header">
-          <div class="weather__current-location js-location"></div>
-          <div class="weather__current-time js-time"></div>
-        </header>
-        <div class="weather__current-body">
-          <div class="weather__current-temp js-temperature"></div>
-          <div class="weather__current-profile js-weather-code"></div>
-          <div class="weather__current-day js-day-temp"></div>
-          <div class="weather__current-night js-night-temp"></div>
-        </div>
-      </section>
 
-      <section class="weather__today">
-        <header class="weather__today-header">
-          <div class="weather__today-location js-today-location"></div>
-          <div class="weather__today-feel js-today-feel"></div>
-          <div class="weather__today-profile js-today-code"></div>
-        </header>
-        <div class="weather__today-body">
-          <div class="weather__today-high js-temp-high"></div>
-          <div class="weather__today-low js-temp-low"></div>
-          <div class="weather__today-humidity js-humidity"></div>
-          <div class="weather__today-uv js-uv-index"></div>
-          <div class="weather__today-wind-speed js-wind-speed"></div>
-          <div class="weather__today-wind-direction js-wind-direction"></div>
-          <div class="weather__today-visibility js-visibility"></div>
-        </div>
-      </section>
+    <div class="weather-content" id="weather-content">
+      <div id="current-weather-container"></div>
+      <div id="today-details-container"></div>
+      <div id="periods-forecast-container"></div>
+      <div id="hourly-forecast-container"></div>
+      <div id="daily-forecast-container"></div>
+    </div>
 
-      <section class="weather__forecast">
-        <div class="weather__forecast-period js-period" data-period="morning">
-          <div class="weather__forecast-temp js-period-temp"></div>
-          <div class="weather__forecast-feel js-period-feel"></div>
-          <div class="weather__forecast-code js-period-code"></div>
-        </div>
-        <div class="weather__forecast-period js-period" data-period="afternoon">
-          <div class="weather__forecast-temp js-period-temp"></div>
-          <div class="weather__forecast-feel js-period-feel"></div>
-          <div class="weather__forecast-code js-period-code"></div>
-        </div>
-        <div class="weather__forecast-period js-period" data-period="evening">
-          <div class="weather__forecast-temp js-period-temp"></div>
-          <div class="weather__forecast-feel js-period-feel"></div>
-          <div class="weather__forecast-code js-period-code"></div>
-        </div>
-        <div class="weather__forecast-period js-period" data-period="overnight">
-          <div class="weather__forecast-temp js-period-temp"></div>
-          <div class="weather__forecast-feel js-period-feel"></div>
-          <div class="weather__forecast-code js-period-code"></div>
-        </div>
-      </section>
+  </main>
 
-      <section class="weather__hourly js-hourly"></section>
+  <template id="current-weather-template">
+    <section class="current-weather">
+      <header class="current-weather__header">
+        <h2 class="current-weather__location js-current-location"></h2>
+        <p class="current-weather__time js-current-time"></p>
+      </header>
+      <div class="current-weather__body">
+        <p class="current-weather__temp js-current-temp"></p>
+        <div class="current-weather__condition">
+          <img class="current-weather__icon js-current-icon" src="" alt="">
+          <p class="current-weather__text js-current-text"></p>
+        </div>
+      </div>
+    </section>
+  </template>
 
-      <section class="weather__daily js-daily"></section>
+  <template id="today-details-template">
+    <section class="today-details">
+      <header class="today-details__header">
+        <h2 class="today-details__title js-today-title">Weather Today in...</h2>
+      </header>
+      <div class="today-details__body">
+        <dl class="details-grid">
+          <div class="details-grid__item">
+            <dt>High / Low</dt>
+            <dd class="js-temp-high-low"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Wind</dt>
+            <dd class="js-wind"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Sunrise</dt>
+            <dd class="js-sunrise"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Sunset</dt>
+            <dd class="js-sunset"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Chance of Rain</dt>
+            <dd class="js-precip-probability"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Precipitation</dt>
+            <dd class="js-precip-sum"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>UV Index</dt>
+            <dd class="js-uv-index"></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </template>
 
-    </template>
-  </div>
-  <script type="module" src="/src/main.js"></script>
+  <template id="periods-forecast-template">
+    <section class="periods-forecast">
+      <header class="periods-forecast__header">
+        <h3 class="periods-forecast__title">Today's Forecast</h3>
+      </header>
+      <ul class="periods-forecast__list"></ul>
+    </section>
+  </template>
+
+  <template id="period-item-template">
+    <li class="period-item">
+      <p class="period-item__name js-period-name"></p>
+      <p class="period-item__temp js-period-temp"></p>
+      <div class="period-item__condition">
+        <img class="period-item__icon js-period-icon" src="" alt="">
+        <p class="period-item__description js-period-description"></p>
+      </div>
+      <p class="period-item__precip js-period-precip"></p>
+    </li>
+  </template>
+
+  <template id="hourly-forecast-template">
+    <section class="hourly-forecast">
+      <header class="hourly-forecast__header">
+        <h3 class="hourly-forecast__title">Hourly Forecast</h3>
+      </header>
+      <div class="hourly-forecast__items-container"></div>
+    </section>
+  </template>
+
+  <template id="daily-forecast-template">
+    <section class="daily-forecast">
+      <header class="daily-forecast__header">
+        <h3 class="daily-forecast__title">Daily Forecast</h3>
+      </header>
+      <div class="daily-forecast__items-container"></div>
+    </section>
+  </template>
+
+  <script type="module" src="/src/main.js" defer></script>
 </body>
 
 </html>

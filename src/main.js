@@ -6,7 +6,7 @@ import { formatLocationForSearch, formatLocationForDisplay } from './utils/forma
 
 // DOM elements
 const searchResultsContainer = document.getElementById('search-results');
-const searchInput = document.getElementById('searchInput');
+const searchInput = document.getElementById('search-input');
 const weatherContainer = document.getElementById('weather-container'); 
 
 // show location matches
