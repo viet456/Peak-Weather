@@ -63,7 +63,8 @@ async function handleLocationSelection(location) {
   lastLoadedLocation = location;
   // update the input and hide the dropdown
   searchInput.value = '';
-  searchInput.blur()
+  searchInput.blur();
+  searchResultsContainer.innerHTML = '';
   searchResultsContainer.classList.add('hidden');
 
   // get weather data and display it
@@ -108,7 +109,7 @@ function init() {
       renderWeather(lastLoadedWeatherData, lastLoadedLocation);
     }
   })
-  
+
   // wait 200ms after last input to pull location matches
   let timeout;
   searchInput.addEventListener('input', (e) => {
