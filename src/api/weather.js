@@ -5,9 +5,11 @@ export async function getWeather(latitude, longitude) {
         console.error("Latitude and longitude are required.");
     return null;
     }
-    let apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}`;
-        apiUrl+= `&hourly=uv_index,visibility,cloud_cover&current=temperature_2m,relative_humidity_2m,`
-        apiUrl+= `is_day,wind_speed_10m,wind_direction_10m,weather_code,precipitation,snowfall&timezone=auto`;
+    let apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}` +
+    `&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m,wind_gusts_10m` +
+    `&hourly=temperature_2m,apparent_temperature,precipitation_probability,weather_code,wind_speed_10m,wind_gusts_10m,is_day` +
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max` +
+    `&timezone=auto`;
     try {
         let response = await fetch(apiUrl);
         if (!response.ok) {
