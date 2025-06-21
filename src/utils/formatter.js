@@ -16,25 +16,13 @@ export function formatTime(dateInput) {
 }
 
 // sets temperature scale to locale
-export function formatTemp(celsius) {
-    if (typeof celsius !== 'number') return '';
-    // find a user's country via their language code
-    const userLocale = navigator.language || 'en-US';
-    let region;
-    try {
-        // .region only works on Locale objects
-        region = new Intl.Locale(userLocale.region);
-    } catch (e) {
-        region = 'US';
-    }
-    
-    const unit = fahrenheitRegions.includes(region)
-        ? 'fahrenheit'
-        : 'celsius';
+export function formatTemp(celsius, unit) {
+    if (typeof celsius !== 'number' || !unit) return '';
     let tempToDisplay = celsius;
     if (unit === 'fahrenheit') {
         tempToDisplay = (celsius * 9/5) + 32;
     }
+    let userLocale = navigator.language || 'en-US';
     return new Intl.NumberFormat(userLocale, {
         style: 'unit',
         unit: unit,
