@@ -2,7 +2,7 @@ import { formatLocationForDisplay } from "../utils/formatLocation";
 import { formatTime, formatTemp } from "../utils/formatter";
 import { getWeatherDescription } from "../utils/weatherDataProcessor";
 
-export function displayCurrentWeather(currentData, location, temperatureUnit) {
+export function displayCurrentWeather(currentData, location, systemUnit) {
     const template = document.getElementById('current-weather-template');
     const clone = template.content.cloneNode(true);
 
@@ -16,7 +16,7 @@ export function displayCurrentWeather(currentData, location, temperatureUnit) {
 
     const formattedLocation = formatLocationForDisplay(location);
     const formattedTime = formatTime(currentData.time);
-    const temperature = formatTemp(currentData.temperature, temperatureUnit);
+    const temperature = formatTemp(currentData.temperature, systemUnit);
     const weatherCode = currentData.weatherCode;
 
     elements.location.textContent = `${formattedLocation}`;

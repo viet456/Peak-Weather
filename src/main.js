@@ -3,8 +3,8 @@ import { getWeather } from './api/weather'
 import { getLocations } from './api/locations';
 import { formatLocationForSearch, formatLocationForDisplay } from './utils/formatLocation';
 import { displayCurrentWeather } from './ui/displayCurrent';
-import { getTemperatureUnit, setTemperatureUnit } from './utils/settings';
-import { updateTempUnit } from './ui/tempToggle';
+import { getSystemUnit, setSystemUnit } from './utils/settings';
+import { updateSystemUnit } from './ui/unitSystemToggle';
 import { displayTodayWeather } from './ui/displayToday';
 import { processCurrentData, processTodayData, processDailyData } from './utils/weatherDataProcessor';
 
@@ -12,7 +12,7 @@ import { processCurrentData, processTodayData, processDailyData } from './utils/
 const searchResultsContainer = document.getElementById('search-results');
 const searchInput = document.getElementById('search-input');
 const weatherContainer = document.getElementById('weather-container');
-const tempToggleBtn = document.getElementById('temp-toggle-btn');
+const unitToggleBtn = document.getElementById('unit-toggle-btn');
 
 let lastLoadedLocation = null;
 let lastLoadedWeatherData = null;
@@ -77,20 +77,20 @@ async function handleLocationSelection(location) {
 }
 
 function renderWeather(weatherData, location) {
-  let temperatureUnit = getTemperatureUnit();
+  let systemUnit = getSystemUnit();
   const currentData = processCurrentData(weatherData);
   const todayData = processTodayData(weatherData);
 
-  displayCurrentWeather(currentData, location, temperatureUnit);
-  displayTodayWeather(todayData, location, temperatureUnit);
+  displayCurrentWeather(currentData, location, systemUnit);
+  displayTodayWeather(todayData, location, systemUnit);
 }
 
 // handles user's settings
 function initializeSettings() {
-  if (getTemperatureUnit() === 'celsius') {
-    tempToggleBtn.textContent = 'C';
+  if (getSystemUnit() === 'metric') {
+    unitToggleBtn.textContent = 'C';
   } else {
-    tempToggleBtn.textContent = 'F';
+    unitToggleBtn.textContent = 'F';
   }
 
   // day/night mode:
@@ -102,14 +102,14 @@ function init() {
   initializeSettings();
 
   // toggle button switches temperature scale
-  tempToggleBtn.addEventListener('click', () => {
-    updateTempUnit();
-    if (getTemperatureUnit() === 'celsius') {
-      tempToggleBtn.textContent = 'C';
+  unitToggleBtn.addEventListener('click', () => {
+    updateSystemUnit();
+    if (getSystemUnit() === 'metric') {
+      unitToggleBtn.textContent = 'C';
     } else {
-      tempToggleBtn.textContent = 'F';
+      unitToggleBtn.textContent = 'F';
     }
-    console.log(getTemperatureUnit());
+    console.log(getSystemUnit());
     if (lastLoadedLocation) {
       // rerender weather display
       renderWeather(lastLoadedWeatherData, lastLoadedLocation);

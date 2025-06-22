@@ -1,7 +1,7 @@
 import { formatLocationForDisplay } from "../utils/formatLocation";
-import { formatTime, formatTemp } from "../utils/formatter";
+import { formatTime, formatTemp, formatSpeed, formatPrecipitation } from "../utils/formatter";
 
-export function displayTodayWeather(todayData, location, temperatureUnit) {
+export function displayTodayWeather(todayData, location, systemUnit) {
     const template = document.getElementById('today-details-template');
     const clone = template.content.cloneNode(true);
 
@@ -16,14 +16,14 @@ export function displayTodayWeather(todayData, location, temperatureUnit) {
         uvIndex: clone.querySelector('.js-today-uv-index'),
     }
 
-    const formattedMax = formatTemp(todayData.tempMax, temperatureUnit);
-    const formattedMin = formatTemp(todayData.tempMin, temperatureUnit);
-    const windSpeed = Math.round(todayData.windSpeedMax);
-    const windGusts = Math.round(todayData.windGustsMax);
+    const formattedMax = formatTemp(todayData.tempMax, systemUnit);
+    const formattedMin = formatTemp(todayData.tempMin, systemUnit);
+    const windSpeed = formatSpeed(todayData.windSpeedMax, systemUnit);
+    const windGusts = formatSpeed(todayData.windGustsMax, systemUnit);
     const sunriseTime = formatTime(todayData.sunrise);
     const sunsetTime = formatTime(todayData.sunset);
-    const precipProbability = todayData.precipProbabilityMax;
-    const precipSum = todayData.precipSum;
+    const precipProbability = formatPrecipitation(todayData.precipProbabilityMax, systemUnit);
+    const precipSum = formatPrecipitation(todayData.precipSum, systemUnit);
     const uvIndex = todayData.uvIndexMax;
 
     elements.title.textContent = `Weather Today in ${formatLocationForDisplay(location)}`;

@@ -6,15 +6,15 @@ function detectUnitFromLocale() {
   } catch (e) {
     region = 'US'; // Default on error
   }
-  const fahrenheitRegions = ['US', 'BS', 'KY', 'LR', 'PW', 'FM', 'MH'];
-  return fahrenheitRegions.includes(region) ? 'fahrenheit' : 'celsius';
+  const imperialRegions = ['US', 'BS','BZ', 'KY', 'LR', 'PW', 'FM', 'MH'];
+  return imperialRegions.includes(region) ? 'imperial' : 'metric';
 }
 
-export function getTemperatureUnit() {
-  const savedUnit = localStorage.getItem('temperatureUnit');
+export function getSystemUnit() {
+  const savedUnit = localStorage.getItem('systemUnit');
   return savedUnit || detectUnitFromLocale();
 }
 
-export function setTemperatureUnit(unit) {
-  localStorage.setItem('temperatureUnit', unit);
+export function setSystemUnit(unit) {
+  localStorage.setItem('systemUnit', unit);
 }
