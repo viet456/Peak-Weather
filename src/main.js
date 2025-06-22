@@ -5,6 +5,7 @@ import { formatLocationForSearch, formatLocationForDisplay } from './utils/forma
 import { displayCurrentWeather } from './ui/displayCurrent';
 import { getTemperatureUnit, setTemperatureUnit } from './utils/settings';
 import { updateTempUnit } from './ui/tempToggle';
+import { displayTodayWeather } from './ui/displayToday';
 
 // DOM elements
 const searchResultsContainer = document.getElementById('search-results');
@@ -76,7 +77,8 @@ async function handleLocationSelection(location) {
 
 function renderWeather(weatherData, location) {
   let temperatureUnit = getTemperatureUnit();
-  displayCurrentWeather(weatherData, location, temperatureUnit)
+  displayCurrentWeather(weatherData, location, temperatureUnit);
+  displayTodayWeather(weatherData, location, temperatureUnit);
 }
 
 // handles user's settings
@@ -131,6 +133,15 @@ function init() {
 
   //show San Francisco by default
   getWeather(37.77, 122.41);
+  const defaultLocation = {
+    city: "San Francisco",
+    state_code: "CA",
+    country: "United States",
+    country_code: "us",
+    lat: 37.7749,
+    lon: -122.4194
+  };
+  handleLocationSelection(defaultLocation);
 
   // getWeather(37.77, 122.41).then(data => {
   //     displayWeather(data, { name: "San Francisco", country: "United States" });

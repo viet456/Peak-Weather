@@ -34,3 +34,38 @@ export function getWeatherDescription(code) {
   const condition = weatherCodeMap[code];
   return condition ? condition.text : 'Weather data not available';
 }
+
+function extractDayDataByIndex(daily, index) {
+  if (!daily) throw new Error('NO_DAILY_DATA: Daily data is missing.');
+  if (!daily.time) throw new Error('NO_TIME_ARRAY: Time array is missing in daily data.');
+  if (!daily.time[index]) throw new Error(`INVALID_INDEX: No data for index ${index}.`);
+  return {
+    date: new Date(daily.time[index]),
+    weatherCode: daily.weather_code[index],
+    tempMax: daily.temperature_2m_max[index],
+    tempMin: daily.temperature_2m_min[index],
+    sunrise: new Date(daily.sunrise[index]),
+    sunset: new Date(daily.sunset[index]),
+    uvIndexMax: daily.uv_index_max[index],
+    precipSum: daily.precipitation_sum[index],
+    precipProbabilityMax: daily.precipitation_probability_max[index],
+    windSpeedMax: daily.wind_speed_10m_max[index],
+    windGustsMax: daily.wind_gusts_10m_max[index],
+  };
+}
+
+export function getTodayWeather(weatherData) {
+  return extractDayDataByIndex(weatherData.daily, 0);
+}
+
+export function getDailyForecast(weatherData) {
+  const daily = weatherData.daily;
+  const forecastArray = [];
+  for (let i=0; i<daily.time.length; i++) {
+    const dayData = extractDayDataByIndex(daily, i);
+    if (dayData) {
+      forecastArray.push(dayData);
+    }
+  }
+  return forecastArray;
+}
