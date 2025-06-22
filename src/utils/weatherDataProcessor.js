@@ -54,11 +54,26 @@ function extractDayDataByIndex(daily, index) {
   };
 }
 
-export function getTodayWeather(weatherData) {
+export function processCurrentData(weatherData) {
+  const rawCurrent = weatherData.current;
+  return {
+    time: new Date(rawCurrent.time),
+    temperature: rawCurrent.temperature_2m,
+    apparentTemperature: rawCurrent.apparent_temperature,
+    isDay: rawCurrent.is_day === 1,
+    precipitation: rawCurrent.precipitation,
+    humidity: rawCurrent.relative_humidity_2m,
+    weatherCode: rawCurrent.weather_code,
+    windSpeed: rawCurrent.wind_speed_10m,
+    windGusts: rawCurrent.wind_gusts_10m,
+  }
+}
+
+export function processTodayData(weatherData) {
   return extractDayDataByIndex(weatherData.daily, 0);
 }
 
-export function getDailyForecast(weatherData) {
+export function processDailyData(weatherData) {
   const daily = weatherData.daily;
   const forecastArray = [];
   for (let i=0; i<daily.time.length; i++) {

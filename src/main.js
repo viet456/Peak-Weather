@@ -6,6 +6,7 @@ import { displayCurrentWeather } from './ui/displayCurrent';
 import { getTemperatureUnit, setTemperatureUnit } from './utils/settings';
 import { updateTempUnit } from './ui/tempToggle';
 import { displayTodayWeather } from './ui/displayToday';
+import { processCurrentData, processTodayData, processDailyData } from './utils/weatherDataProcessor';
 
 // DOM elements
 const searchResultsContainer = document.getElementById('search-results');
@@ -77,8 +78,11 @@ async function handleLocationSelection(location) {
 
 function renderWeather(weatherData, location) {
   let temperatureUnit = getTemperatureUnit();
-  displayCurrentWeather(weatherData, location, temperatureUnit);
-  displayTodayWeather(weatherData, location, temperatureUnit);
+  const currentData = processCurrentData(weatherData);
+  const todayData = processTodayData(weatherData);
+
+  displayCurrentWeather(currentData, location, temperatureUnit);
+  displayTodayWeather(todayData, location, temperatureUnit);
 }
 
 // handles user's settings
