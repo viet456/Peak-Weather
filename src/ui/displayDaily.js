@@ -13,11 +13,16 @@ function renderDailyItem(dayData, systemUnit) {
         precip: itemClone.querySelector('.js-daily-precip'),
     };
 
-    elements.day.textContent = formatDayOfWeek(dayData.date);
+    const weekday = formatDayOfWeek(dayData.date);
+    const highTemp = formatTemp(dayData.tempMax, systemUnit);
+    const lowTemp = formatTemp(dayData.tempMin, systemUnit);
+    const precipProbability = dayData.precipProbabilityMax;
+
+    elements.day.textContent = weekday;
     elements.icon.textContent = '';
-    elements.high.textContent = formatTemp(dayData.tempMax, systemUnit);
-    elements.low.textContent = formatTemp(dayData.tempMin, systemUnit);
-    elements.precip.textContent = `${dayData.precipProbabilityMax}%`;
+    elements.high.textContent = highTemp;
+    elements.low.textContent = lowTemp;
+    elements.precip.textContent = `${precipProbability}%`;
 
     return itemClone;
 }

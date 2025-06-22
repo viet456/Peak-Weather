@@ -6,8 +6,9 @@ import { displayCurrentWeather } from './ui/displayCurrent';
 import { getSystemUnit, setSystemUnit } from './utils/settings';
 import { updateSystemUnit } from './ui/unitSystemToggle';
 import { displayTodayWeather } from './ui/displayToday';
-import { processCurrentData, processTodayData, processDailyData } from './utils/weatherDataProcessor';
+import { processCurrentData, processTodayData, processDailyData, processHourlyData } from './utils/weatherDataProcessor';
 import { displayDaily } from './ui/displayDaily';
+import { displayHourlyWeather } from './ui/displayHourly';
 
 // DOM elements
 const searchResultsContainer = document.getElementById('search-results');
@@ -82,10 +83,12 @@ function renderWeather(weatherData, location) {
   const currentData = processCurrentData(weatherData);
   const todayData = processTodayData(weatherData);
   const dailyData = processDailyData(weatherData);
+  const hourlyData = processHourlyData(weatherData);
 
   displayCurrentWeather(currentData, location, systemUnit);
   displayTodayWeather(todayData, location, systemUnit);
   displayDaily(dailyData, location, systemUnit);
+  displayHourlyWeather(hourlyData, location, systemUnit);
 }
 
 // handles user's settings

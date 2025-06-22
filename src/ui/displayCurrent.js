@@ -17,13 +17,13 @@ export function displayCurrentWeather(currentData, location, systemUnit) {
     const formattedLocation = formatLocationForDisplay(location);
     const formattedTime = formatTime(currentData.time);
     const temperature = formatTemp(currentData.temperature, systemUnit);
-    const weatherCode = currentData.weatherCode;
+    const weatherCode = getWeatherDescription(currentData.weatherCode);
 
     elements.location.textContent = `${formattedLocation}`;
     elements.time.textContent = `As of ${formattedTime}`;
     elements.temp.textContent = `${temperature}`;
     //elements.temp.icon
-    elements.text.textContent = getWeatherDescription(weatherCode);
+    elements.text.textContent = weatherCode;
 
     const container = document.getElementById('current-weather-container');
     container.innerHTML = '';

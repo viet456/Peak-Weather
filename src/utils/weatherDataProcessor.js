@@ -35,6 +35,21 @@ export function getWeatherDescription(code) {
   return condition ? condition.text : 'Weather data not available';
 }
 
+function extractHourDataByIndex(hourly, index) {
+  if (!hourly) throw new Error('NO_DAILY_DATA: Daily data is missing.');
+  if (!hourly.time) throw new Error('NO_TIME_ARRAY: Time array is missing in daily data.');
+  if (!hourly.time[index]) throw new Error(`INVALID_INDEX: No data for index ${index}.`);
+  return {
+    isDay: hourly.is_day[index],
+    precipProbability: hourly.precipitation_probability[index],
+    temp: hourly.temperature_2m[index],
+    date: new Date(hourly.time[index]),
+    weatherCode: hourly.weather_code[index],
+    windGusts: hourly.wind_gusts_10m[index],
+    windSpeed: hourly.wind_speed_10m[index],
+  };
+}
+
 function extractDayDataByIndex(daily, index) {
   if (!daily) throw new Error('NO_DAILY_DATA: Daily data is missing.');
   if (!daily.time) throw new Error('NO_TIME_ARRAY: Time array is missing in daily data.');
@@ -76,11 +91,27 @@ export function processTodayData(weatherData) {
 export function processDailyData(weatherData) {
   const daily = weatherData.daily;
   const forecastArray = [];
-  for (let i=0; i<daily.time.length; i++) {
+  for (let i = 0; i < daily.time.length; i++) {
     const dayData = extractDayDataByIndex(daily, i);
     if (dayData) {
       forecastArray.push(dayData);
     }
   }
   return forecastArray;
+}
+
+export function processHourlyData(weatherData) {
+  const hourly = weatherData.hourly;
+  const hourlyArray = [];
+  const now = new Date();
+  const startIndex = hourly.time.findIndex(timeString => new Date(timeString) >= now);
+  if (startIndex === -1) return [];
+  const endIndex = startIndex + 24;
+  for (let i = startIndex; i < endIndex; i++) {
+    const hourData = extractHourDataByIndex(hourly, i)
+    if (hourData) {
+      hourlyArray.push(hourData);
+    }
+  }
+  return hourlyArray;
 }
