@@ -63,3 +63,8 @@ export function formatPrecipitation(mm, system) {
         maximumFractionDigits: 1,
     }).format(Math.round(precipToDisplay));
 }
+
+export function formatDayOfWeek(dateObject) {
+    let userLocale = navigator.language || 'en-US';
+    return dateObject.toLocaleString(userLocale, { weekday: 'short' });
+}
