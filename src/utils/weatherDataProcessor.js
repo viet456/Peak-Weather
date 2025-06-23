@@ -42,7 +42,7 @@ function extractHourDataByIndex(hourly, index) {
   return {
     isDay: hourly.is_day[index],
     precipProbability: hourly.precipitation_probability[index],
-    temp: hourly.temperature_2m[index],
+    temperature: hourly.temperature_2m[index],
     date: new Date(hourly.time[index]),
     weatherCode: hourly.weather_code[index],
     windGusts: hourly.wind_gusts_10m[index],
@@ -114,4 +114,29 @@ export function processHourlyData(weatherData) {
     }
   }
   return hourlyArray;
+}
+
+export function processPeriodsData(weatherData) {
+  const hourly = weatherData.hourly;
+  if (!hourly || !hourly.time) return [];
+
+  const periodArray = [];
+  const periodHours = {
+    Morning: 9,
+    Afternoon: 13,
+    Evening: 19,
+    Overnight: 22,
+  };
+  for (const periodName in periodHours) {
+    const hourToFind = periodHours[periodName];
+    const indexOfHour = hourly.time.findIndex(timeString => new Date(timeString).getHours() === hourToFind);
+    if (indexOfHour !== -1) {
+      const hourWeather = extractHourDataByIndex(hourly, indexOfHour);
+      if (hourWeather) {
+        hourWeather.name = periodName;
+        periodArray.push(hourWeather);
+      }
+    }
+  }
+  return periodArray;
 }
