@@ -1,4 +1,4 @@
-import { getSystemUnit, setSystemUnit } from "../utils/settings";
+import { getSystemUnit, setSystemUnit } from "./settings";
 
 export function updateSystemUnit() {
     const currentUnit = getSystemUnit();

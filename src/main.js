@@ -4,7 +4,7 @@ import { getLocations } from './api/locations';
 import { formatLocationForSearch, formatLocationForDisplay } from './utils/formatLocation';
 import { displayCurrentWeather } from './ui/displayCurrent';
 import { getSystemUnit, setSystemUnit } from './utils/settings';
-import { updateSystemUnit } from './ui/unitSystemToggle';
+import { updateSystemUnit } from './utils/unitSystemToggle';
 import { displayTodayWeather } from './ui/displayToday';
 import { processCurrentData, processTodayData, processDailyData, processHourlyData, processPeriodsData } from './utils/weatherDataProcessor';
 import { displayDaily } from './ui/displayDaily';

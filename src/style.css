@@ -150,6 +150,7 @@ body {
 #unit-toggle-btn:hover {
   border: var(--border-focus);
   border-color: var(--color-accent-light);
+  cursor: pointer;
 }
 
 #unit-toggle-btn:active {

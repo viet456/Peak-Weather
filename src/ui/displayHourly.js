@@ -14,7 +14,7 @@ function renderHourlyItem(hourData, systemUnit) {
     }
 
     const time = formatTime(hourData.date);
-    const temp = formatTemp(hourData.temperature);
+    const temp = formatTemp(hourData.temperature, systemUnit);
     const weatherCode = getWeatherDescription(hourData.weatherCode);
     const precipProbability = hourData.precipProbability;
 
