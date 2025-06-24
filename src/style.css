@@ -1,11 +1,67 @@
-*, *::before, *::after {
+:root {
+  /* Colors */
+  /* text */
+  --color-text-primary: #000000;
+  /* secondary text*/
+  --color-text-secondary: #6B7280;
+  /* section background colors*/
+  --color-surface: #FFFFFF;
+  /* page background*/
+  --color-background: #ededed;
+  /* interactive elements */
+  --color-primary: #316ed0;
+  /* border */
+  --color-border: #d6d5d5;
+
+  /* Fonts */
+  --font-family: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-size-base: 1rem;
+  --font-size-l: 1.25rem;
+  --font-weight-base: 400;
+  --font-weight-bold: 700;
+
+  /* Button Sizes */
+  --control-size-small: 2rem;
+
+  /* Spacing */
+  /* 4px */
+  --spacing-xs: 0.25rem;
+  /* 8px */
+  --spacing-s: 0.5rem;
+  /* 16px */
+  --spacing-m: 1rem;
+  /* 24px */
+  --spacing-l: 1.5rem;
+  /* 32px */
+  --spacing-xl: 2rem;
+  
+
+  /* Borders */
+  --border-radius-medium: 8px;
+  --border-focus: 3px solid var(--color-border);
+  --outline-focus: -3px solid var(--color-border);
+
+  /* Box Shadows*/
+  --box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1)
+}
+
+/* style resets */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
@@ -15,17 +71,128 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+#app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-s) var(--spacing-m);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  padding: var(--spacing-m);
+}
+
+/* unit toggle button and search input*/
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-m);
+  justify-content: flex-end;
+}
+
+.search-form {
+  position: relative;
+}
+
+#unit-toggle-btn {
+  height: var(--control-size-small);
+  font-size: var(--font-size-m);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-content: center;
+  padding: 0;
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-surface);
+  border: none;
+}
+
+#unit-tobble-btn:focus-visible {
+  border: var(--border-focus);
+}
+
+#search-input {
+  width: 15rem;
+  height: var(--control-size-small);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-xs);
+  border: none;
+}
+
+#search-input:focus-visible {
+  box-shadow: none;
+  outline: none;
+  outline: var(--border-focus);
+  outline-offset: -3px;
+  border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
+}
+
+#search-results {
+  position: absolute;
+  z-index: 10;
+  flex-grow: 1;
+  left: 0;
+  right: 0;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+  box-shadow: var(--box-shadow);
+  max-height: 200px; 
+  overflow-y: auto;
+}
+
+#search-results>div {
+  flex-grow: 1;
+  padding: var(--spacing-xs);
+  color: var(--color-text-primary);
+}
+
+#search-results > div:hover {
+  background-color: var(--color-primary);
+  cursor: pointer;
+  color: var(--color-surface);
+}
+
+#weather-content {
+  padding: var(--spacing-m);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -33,6 +200,21 @@ input, button, textarea, select {
   }
 }
 
-.hidden {
-    display: none;
+/* On small screens, stack the header items vertically */
+@media (max-width:40rem) {
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+  .header-controls {
+    /* Allow the controls to take up the full width */
+    width: 100%;
+    /* You can decide if you want them left or right aligned */
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -5,7 +5,7 @@ export async function getLocations(location) {
         return null;
     }
     let apiUrl = `https://api.geoapify.com/v1/geocode/search?text=${location}`;
-        apiUrl+= `&limit=5&bias=countrycode:auto&format=json&apiKey=${apiKey}`;
+        apiUrl+= `&limit=20&bias=countrycode:auto&format=json&apiKey=${apiKey}`;
     try {
         let response = await fetch(apiUrl);
         if (!response.ok) {

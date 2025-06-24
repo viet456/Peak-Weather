@@ -136,12 +136,12 @@ function init() {
 
   // hide search results when search bar is clicked off of 
   searchInput.addEventListener('blur', () => {
-    setTimeout(() => {
-      searchResultsContainer.classList.add('hidden');
-    }, 150);
+    searchResultsContainer.classList.add('hidden');
   });
   searchInput.addEventListener('focus', () => {
-    searchResultsContainer.classList.remove('hidden');
+    if (searchInput.value.length > 2) {
+      searchResultsContainer.classList.remove('hidden');
+    }
   })
 
   //show San Francisco by default
