@@ -37,6 +37,9 @@ async function renderLocationDropdown(locations) {
   }
 
   locations.forEach(location => {
+    if (!location || !location.city) {
+      return; 
+    }
     const locationEl = document.createElement('div');
     locationEl.classList.add('location-result-item');
 
@@ -60,7 +63,7 @@ async function handleSearch(query) {
   }
   const locations = await getLocations(query);
   renderLocationDropdown(locations);
-  console.log('searched');
+  console.log('API Search Results:', locations);
 }
 
 // handle user selection of a location
