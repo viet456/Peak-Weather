@@ -59,9 +59,11 @@ async function handleSearch(query) {
   if (!query || query.length < 2) {
     searchResultsContainer.classList.add('hidden');
     searchResultsContainer.innerHTML = '';
+    searchInput.classList.remove('is-showing-results');
     return;
   }
   const locations = await getLocations(query);
+  searchInput.classList.add('is-showing-results');
   renderLocationDropdown(locations);
   console.log('API Search Results:', locations);
 }
@@ -72,6 +74,7 @@ async function handleLocationSelection(location) {
   // update the input and hide the dropdown
   searchInput.value = '';
   searchInput.blur();
+  searchInput.classList.remove('is-showing-results');
   searchResultsContainer.innerHTML = '';
   searchResultsContainer.classList.add('hidden');
 
@@ -139,10 +142,12 @@ function init() {
 
   // hide search results when search bar is clicked off of 
   searchInput.addEventListener('blur', () => {
+    searchInput.classList.remove('is-showing-results');
     searchResultsContainer.classList.add('hidden');
   });
   searchInput.addEventListener('focus', () => {
     if (searchInput.value.length > 2) {
+      searchInput.classList.add('is-showing-results');
       searchResultsContainer.classList.remove('hidden');
     }
   })

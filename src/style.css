@@ -154,6 +154,9 @@ body {
   outline: none;
   outline: var(--border-focus);
   outline-offset: -3px;
+}
+
+#search-input.is-showing-results:focus-visible {
   border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
 }
 
