@@ -1,0 +1,7 @@
+.current-weather__icon svg {
+  aspect-ratio: 1 / 1;
+}
+
+.current-weather__icon {
+  width: 2rem;
+}

@@ -20,3 +20,10 @@ A clean and modern weather app
 * **Vite** as a build tool
 * **Open-Meteo Weather Forecast API** for weather data
 * **Geoapify Geocoding API** for location data
+
+## Credits & Attributions
+
+* **Weather Data:** [Open-Meteo API](https://open-meteo.com/)
+* **Geocoding:** [Geoapify Geocoding API](https://www.geoapify.com/geocoding-api)
+* **Icons:** [Weather Icons](https://erikflowers.github.io/weather-icons/) by Erik Flowers.
+
