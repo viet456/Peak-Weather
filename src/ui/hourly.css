@@ -1,0 +1,43 @@
+.hourly-forecast__header {
+    margin-bottom: var(--spacing-m);
+}
+
+.hourly-forecast__items-container {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none; /* for Firefox */
+    gap: 1px; 
+    background-color: var(--color-border);
+}
+
+.hourly-item {
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-s);
+    padding: var(--spacing-s);
+}
+
+.hourly-item:first-child {
+    padding-left: 0;
+}
+
+.hourly-item:last-child {
+    border-right: none;
+}
+
+.hourly-item__icon {
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+}
+
+.hourly-item__precip-icon {
+    width: 1.5rem;
+    aspect-ratio: 1 / 1;
+}
+
+.hourly-item__precip {
+    display: flex;
+    align-items: center;
+}
