@@ -1,5 +1,8 @@
 import { formatLocationForDisplay } from "../utils/formatLocation";
 import { formatTime, formatTemp, formatSpeed, formatPrecipitation } from "../utils/formatter";
+import { getWeatherIconName } from "../utils/getWeatherIconName";
+import { getWeatherIcon } from "../utils/weatherIcons";
+import './today.css';
 
 export function displayTodayWeather(todayData, location, systemUnit) {
     const template = document.getElementById('today-details-template');
@@ -7,6 +10,8 @@ export function displayTodayWeather(todayData, location, systemUnit) {
 
     const elements = {
         title: clone.querySelector('.js-today-title'),
+        forecast: clone.querySelector('.js-today-forecast-text'),
+        forecastIcon: clone.querySelector('.js-today-forecast-icon'),
         highLow: clone.querySelector('.js-today-high-low'),
         wind: clone.querySelector('.js-today-wind'),
         sunrise: clone.querySelector('.js-today-sunrise'),
@@ -16,6 +21,8 @@ export function displayTodayWeather(todayData, location, systemUnit) {
         uvIndex: clone.querySelector('.js-today-uv-index'),
     }
 
+    const forecastName = getWeatherIconName(todayData);
+    const forecastIcon = getWeatherIcon(forecastName);
     const formattedMax = formatTemp(todayData.tempMax, systemUnit);
     const formattedMin = formatTemp(todayData.tempMin, systemUnit);
     const windSpeed = formatSpeed(todayData.windSpeedMax, systemUnit);
@@ -27,6 +34,8 @@ export function displayTodayWeather(todayData, location, systemUnit) {
     const uvIndex = todayData.uvIndexMax;
 
     elements.title.textContent = `Weather Today in ${formatLocationForDisplay(location)}`;
+    elements.forecast.innerHTML = `${forecastName}`;
+    elements.forecastIcon.innerHTML = `${forecastIcon}`;
     elements.highLow.textContent = `${formattedMax} / ${formattedMin}`;
     elements.wind.textContent = `${windSpeed} with gusts of ${windGusts}`;
     elements.sunrise.textContent = `${sunriseTime}`;

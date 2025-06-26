@@ -1,0 +1,29 @@
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-s) var(--spacing-l);
+  align-items: center;
+}
+
+/* label */
+.details-grid dt {
+  color: var(--color-text-secondary);
+}
+
+/* details */
+.details-grid dd {
+  font-weight: var(--font-weight-bold);
+  text-align: left;
+}
+
+.today-details__forecast {
+    display: flex;
+    align-items: center; 
+    gap: var(--spacing-s);
+    justify-content: flex-start;
+}
+
+.today-details__icon {
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+}
