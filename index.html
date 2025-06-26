@@ -152,12 +152,19 @@
   <template id="daily-item-template">
     <div class="daily-item">
       <p class="daily-item__day js-daily-day"></p>
-      <img class="daily-item__icon js-daily-icon" src="" alt="Weather condition icon">
       <div class="daily-item__temps">
         <span class="daily-item__high js-daily-high"></span>
+        <p> / </p>
         <span class="daily-item__low js-daily-low"></span>
       </div>
-      <p class="daily-item__precip js-daily-precip"></p>
+      <div class="daily-item__forecast">
+        <div class="daily-item__icon js-daily-icon"></div>
+        <p class="daily-item__description js-daily-forecast"></p>
+      </div>
+      <div class="daily-item__precip">
+        <div class="daily-item__precip-icon js-daily-precip-icon"></div>
+        <p class="daily-item__precip-text js-daily-precip-text"></p>
+      </div>
     </div>
   </template>
 

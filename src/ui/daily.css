@@ -1,0 +1,26 @@
+.daily-forecast__header {
+    margin-bottom: var(--spacing-m);
+}
+
+.daily-item {
+    display: grid;
+    grid-template-columns: .9fr 1fr 1.1fr .5fr;
+}
+
+.daily-item__precip-icon,
+.daily-item__icon {
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+}
+.daily-item__precip,
+.daily-item__forecast {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-m);
+}
+
+.daily-item__temps {
+    display: flex;
+    gap: var(--spacing-s)
+}

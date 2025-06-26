@@ -3,6 +3,7 @@
 }
 
 .hourly-forecast__items-container {
+    width: 97%;
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none; /* for Firefox */
