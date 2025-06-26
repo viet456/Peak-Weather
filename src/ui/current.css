@@ -1,7 +1,24 @@
+.current-weather {
+  width: 100%;
+  font-size: var(--font-size-l);
+}
+
+.current-weather__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .current-weather__icon svg {
   aspect-ratio: 1 / 1;
 }
 
 .current-weather__icon {
-  width: 2rem;
+  width: 3rem;
 }
+
+.current-weather__condition {
+  display: flex;
+  align-items: center;
+}
+
