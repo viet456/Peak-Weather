@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peak Weather</title>
+  <script type="module" crossorigin src="/Peak-Weather/assets/index-DRDd91g3.js"></script>
+  <link rel="stylesheet" crossorigin href="/Peak-Weather/assets/index-ClllPIGe.css">
+</head>
+
+<body>
+  <main id="app">
+    <header class="page-header">
+      <h1 class="page-title">Peak Weather</h1>
+      <div class="header-controls">
+        <button id="unit-toggle-btn"></button>
+        <form class="search-form" id="search-form" role="search">
+          <input type="search" id="search-input" class="search-form__input" placeholder="Search for a city or zip code"
+            autocomplete="off">
+          <div class="search-results" id="search-results"></div>
+        </form>
+      </div>
+    </header>
+
+    <div class="weather-content" id="weather-content">
+      <div id="current-weather-container"></div>
+      <div id="today-details-container"></div>
+      <div id="periods-forecast-container"></div>
+      <div id="hourly-forecast-container"></div>
+      <div id="daily-forecast-container"></div>
+    </div>
+
+  </main>
+
+  <template id="current-weather-template">
+    <section class="current-weather">
+      <header class="current-weather__header">
+        <h2 class="current-weather__location js-current-location"></h2>
+        <p class="current-weather__time js-current-time"></p>
+      </header>
+      <div class="current-weather__body">
+        <div class="current-weather__condition">
+          <p class="current-weather__temp js-current-temp"></p>
+          <div class="current-weather__icon js-current-icon"></div>
+        </div>
+        <p class="current-weather__text js-current-text"></p>
+      </div>
+    </section>
+  </template>
+
+  <template id="today-details-template">
+    <section class="today-details">
+      <header class="today-details__header">
+        <h3 class="today-details__title js-today-title"></h3>
+      </header>
+      <div class="today-details__body">
+        <dl class="details-grid">
+          <div class="details-grid__item">
+            <dt>Forecast</dt>
+            <dd class="today-details__forecast">
+              <span class="js-today-forecast-text"></span>
+              <div class="today-details__icon js-today-forecast-icon"></div>
+            </dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>High / Low</dt>
+            <dd class="js-today-high-low"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Wind</dt>
+            <dd class="js-today-wind"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Sunrise</dt>
+            <dd class="js-today-sunrise"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Sunset</dt>
+            <dd class="js-today-sunset"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Chance of Rain</dt>
+            <dd class="js-today-precip-probability"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>Precipitation</dt>
+            <dd class="js-today-precip-sum"></dd>
+          </div>
+          <div class="details-grid__item">
+            <dt>UV Index</dt>
+            <dd class="js-today-uv-index"></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </template>
+
+  <template id="periods-forecast-template">
+    <section class="periods-forecast">
+      <header class="periods-forecast__header">
+        <h3 class="periods-forecast__title">Today's Forecast</h3>
+      </header>
+      <ul class="periods-forecast__list"></ul>
+    </section>
+  </template>
+
+  <template id="period-item-template">
+    <li class="period-item">
+      <p class="period-item__name js-period-name"></p>
+      <p class="period-item__temp js-period-temp"></p>
+      <div class="period-item__condition">
+        <div class="period-item__icon js-period-icon"></div>
+        <p class="period-item__description js-period-description"></p>
+      </div>
+      <div class="period-item__precip">
+        <div class="period-item__precip-icon js-period-precip-icon"></div>
+        <p class="period-item__precip-text js-period-precip-text"></p>
+      </div>
+    </li>
+  </template>
+
+  <template id="hourly-forecast-template">
+    <section class="hourly-forecast">
+      <header class="hourly-forecast__header">
+        <h3 class="hourly-forecast__title">Hourly Forecast</h3>
+      </header>
+      <div class="hourly-forecast__items-container"></div>
+    </section>
+  </template>
+
+  <template id="hourly-item-template">
+    <div class="hourly-item">
+      <p class="hourly-item__time js-hourly-time"></p>
+      <div class="hourly-item__icon js-hourly-icon"></div>
+      <p class="hourly-item__temp js-hourly-temp"></p>
+      <p class="hourly-item__description js-hourly-description"></p>
+      <div class="hourly-item__precip">
+        <div class="hourly-item__precip-icon js-hourly-precip-icon"></div>
+        <p class="hourly-item__precip-text js-hourly-precip-text"></p>
+      </div>
+    </div>
+  </template>
+
+  <template id="daily-forecast-template">
+    <section class="daily-forecast">
+      <header class="daily-forecast__header">
+        <h3 class="daily-forecast__title">Daily Forecast</h3>
+      </header>
+      <div class="daily-forecast__items-container"></div>
+    </section>
+  </template>
+
+  <template id="daily-item-template">
+    <div class="daily-item">
+      <p class="daily-item__day js-daily-day"></p>
+      <div class="daily-item__temps">
+        <span class="daily-item__high js-daily-high"></span>
+        <p> / </p>
+        <span class="daily-item__low js-daily-low"></span>
+      </div>
+      <div class="daily-item__forecast">
+        <div class="daily-item__icon js-daily-icon"></div>
+        <p class="daily-item__description js-daily-forecast"></p>
+      </div>
+      <div class="daily-item__precip">
+        <div class="daily-item__precip-icon js-daily-precip-icon"></div>
+        <p class="daily-item__precip-text js-daily-precip-text"></p>
+      </div>
+    </div>
+  </template>
+
+</body>
+
+</html>
