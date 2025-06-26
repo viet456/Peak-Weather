@@ -1,4 +1,4 @@
-# Weather App 🌦️
+# Peak Weather 🌦️
 A clean and modern weather app
 
 ## Features
