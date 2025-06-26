@@ -5,6 +5,7 @@
 .daily-item {
     display: grid;
     grid-template-columns: .9fr 1fr 1.1fr .5fr;
+    align-items: center;
 }
 
 .daily-item__precip-icon,
@@ -22,5 +23,13 @@
 
 .daily-item__temps {
     display: flex;
-    gap: var(--spacing-s)
+    gap: var(--spacing-s);
+}
+
+.daily-item:first-child .daily-item__day {
+    font-weight: var(--font-weight-bold);
+}
+
+.daily-item:first-child .daily-item__temps {
+    font-weight: var(--font-weight-bold);
 }

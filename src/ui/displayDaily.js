@@ -19,13 +19,24 @@ function renderDailyItem(dayData, systemUnit) {
         precipText: itemClone.querySelector('.js-daily-precip-text'),
     };
 
-    const weekday = formatDayOfWeek(dayData.date);
+    const now = new Date();
+    const forecastDate = dayData.date;
+    let weekday;
+    if (now.getFullYear() === forecastDate.getFullYear() &&
+        now.getMonth() === forecastDate.getMonth() &&
+        now.getDate() === forecastDate.getDate()) {
+        // If it's today, set the label to "Today".
+        weekday = 'Today';
+    } else {
+        weekday = formatDayOfWeek(forecastDate);
+    }
     const highTemp = formatTemp(dayData.tempMax, systemUnit);
     const lowTemp = formatTemp(dayData.tempMin, systemUnit);
     const description = getWeatherDescription(dayData.weatherCode);
     const iconName = getWeatherIconName(dayData);
     const iconSvg = getWeatherIcon(iconName);
     const precipProbability = dayData.precipProbabilityMax;
+
     let precipSvg = '';
     if (precipProbability >= 0) {
         precipSvg = getWeatherIcon('droplet-empty');
@@ -34,7 +45,8 @@ function renderDailyItem(dayData, systemUnit) {
         }
     };
 
-    elements.day.textContent = weekday;
+
+    elements.day.innerHTML = `${weekday}`;
     elements.icon.innerHTML = `${iconSvg}`;
     elements.text.textContent = description;
     elements.high.textContent = highTemp;
@@ -52,6 +64,7 @@ export function displayDaily(dailyData, location, systemUnit) {
 
     const now = new Date();
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
     dailyData.forEach(day => {
         if (day.date >= startOfToday) {
             const dailyItemElement = renderDailyItem(day, systemUnit);
