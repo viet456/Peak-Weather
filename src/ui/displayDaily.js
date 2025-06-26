@@ -48,12 +48,15 @@ function renderDailyItem(dayData, systemUnit) {
 export function displayDaily(dailyData, location, systemUnit) {
     const containerTemplate = document.getElementById('daily-forecast-template');
     const containerClone = containerTemplate.content.cloneNode(true);
-
     const itemsContainer = containerClone.querySelector('.daily-forecast__items-container');
 
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     dailyData.forEach(day => {
-        const dailyItemElement = renderDailyItem(day, systemUnit);
-        itemsContainer.append(dailyItemElement);
+        if (day.date >= startOfToday) {
+            const dailyItemElement = renderDailyItem(day, systemUnit);
+            itemsContainer.append(dailyItemElement);
+        }
     });
 
     const pageContainer = document.getElementById('daily-forecast-container');
