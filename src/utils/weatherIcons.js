@@ -3,7 +3,8 @@
 // extracts /path and raw <svg>
 const iconModules = import.meta.glob('../assets/icons/weather/*.svg', {
     eager: true,
-    as: 'raw',
+    query: '?raw',
+    import: 'default',
 });
 
 const icons = {};
