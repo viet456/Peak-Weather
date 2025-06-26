@@ -31,7 +31,7 @@ export function displayTodayWeather(todayData, location, systemUnit) {
     const windGusts = formatSpeed(todayData.windGustsMax, systemUnit);
     const sunriseTime = formatTime(todayData.sunrise);
     const sunsetTime = formatTime(todayData.sunset);
-    const precipProbability = formatPrecipitation(todayData.precipProbabilityMax, systemUnit);
+    const precipProbability = todayData.precipProbabilityMax;
     const precipSum = formatPrecipitation(todayData.precipSum, systemUnit);
     const uvIndex = todayData.uvIndexMax;
 
@@ -42,7 +42,7 @@ export function displayTodayWeather(todayData, location, systemUnit) {
     elements.wind.textContent = `${windSpeed} with gusts of ${windGusts}`;
     elements.sunrise.textContent = `${sunriseTime}`;
     elements.sunset.textContent = `${sunsetTime}`;
-    elements.precipProbability.textContent = `${precipProbability}`
+    elements.precipProbability.textContent = `${precipProbability}%`
     elements.precipSum.textContent = `${precipSum}`;
     elements.uvIndex.textContent = `${uvIndex}`;
 
