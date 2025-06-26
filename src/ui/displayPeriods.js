@@ -22,8 +22,14 @@ function renderPeriodItem(periodData, systemUnit) {
     const weatherCode = getWeatherDescription(periodData.weatherCode);
     const iconName = getWeatherIconName(periodData);
     const iconSvg = getWeatherIcon(iconName);
-    const precipSvg = getWeatherIcon('droplet');
     const precipProbability = periodData.precipProbability;
+    let precipSvg = '';
+    if (precipProbability >= 0) {
+        precipSvg = getWeatherIcon('droplet-empty');
+        if (precipProbability >= 30) {
+            precipSvg = getWeatherIcon('droplet-filled');
+        }
+    };
 
     elements.name.textContent = name;
     elements.temp.textContent = temp;
