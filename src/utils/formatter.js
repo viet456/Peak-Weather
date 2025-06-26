@@ -7,12 +7,19 @@ const fahrenheitRegions = ['US', 'BS', 'KY', 'LR', 'PW', 'FM', 'MH'];
 
 
 // formats ISO8601 dates into a local readable form
-export function formatTime(dateInput) {
+export function formatTime(dateInput, options = {}) {
+    const { includeMinutes = true } = options;
     const dateObject = new Date(dateInput);
     if (!dateObject || !(dateObject instanceof Date) || isNaN(dateObject.getTime())) {
         return 'Invalid time';
     }
-    return dateObject.toLocaleTimeString([], timeFormatOptions)
+    const formatOptions = {
+        hour: 'numeric',
+    };
+    if (includeMinutes) {
+        formatOptions.minute = '2-digit';
+    }
+    return dateObject.toLocaleTimeString([], formatOptions)
 }
 
 // sets temperature scale to locale
