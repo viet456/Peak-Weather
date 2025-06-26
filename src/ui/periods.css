@@ -1,0 +1,42 @@
+.period-item__condition,
+.period-item__precip {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-s);
+}
+
+.periods-forecast__title {
+    margin-bottom: var(--spacing-m);
+}
+
+.period-item__name {
+    font-weight: var(--font-weight-bold);
+}
+
+.period-item__icon,
+.period-item__precip-icon {
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+}
+
+.period-item__condition,
+.period-item__precip {
+    display: flex;
+    align-items: center;
+}
+
+.period-item__precip {
+    justify-content: flex-start;
+}
+
+.period-item {
+    display: grid;
+    grid-template-columns: 1fr .75fr 1fr .5fr;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.25rem 0;
+}
+
+.period-item:last-child {
+    border-bottom: none;
+}

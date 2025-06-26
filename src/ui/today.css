@@ -17,13 +17,17 @@
 }
 
 .today-details__forecast {
-    display: flex;
-    align-items: center; 
-    gap: var(--spacing-s);
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  justify-content: flex-start;
 }
 
 .today-details__icon {
-    width: 2rem;
-    aspect-ratio: 1 / 1;
+  width: 2rem;
+  aspect-ratio: 1 / 1;
+}
+
+.today-details__title {
+  margin-bottom: var(--spacing-s);
 }

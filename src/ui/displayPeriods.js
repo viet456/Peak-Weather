@@ -1,5 +1,8 @@
 import { formatTime, formatTemp, formatSpeed, formatPrecipitation } from "../utils/formatter";
+import { getWeatherIconName } from "../utils/getWeatherIconName";
 import { getWeatherDescription } from "../utils/weatherDataProcessor";
+import { getWeatherIcon } from "../utils/weatherIcons";
+import './periods.css';
 
 function renderPeriodItem(periodData, systemUnit) {
     const itemTemplate = document.getElementById('period-item-template');
@@ -9,18 +12,25 @@ function renderPeriodItem(periodData, systemUnit) {
         name: itemClone.querySelector('.js-period-name'),
         temp: itemClone.querySelector('.js-period-temp'),
         text: itemClone.querySelector('.js-period-description'),
-        precip: itemClone.querySelector('.js-period-precip'),
+        icon: itemClone.querySelector('.js-period-icon'),
+        precipIcon: itemClone.querySelector('.js-period-precip-icon'),
+        precipText: itemClone.querySelector('.js-period-precip-text'),
     }
 
     const name = periodData.name;
     const temp = formatTemp(periodData.temperature, systemUnit);
     const weatherCode = getWeatherDescription(periodData.weatherCode);
+    const iconName = getWeatherIconName(periodData);
+    const iconSvg = getWeatherIcon(iconName);
+    const precipSvg = getWeatherIcon('droplet');
     const precipProbability = periodData.precipProbability;
 
     elements.name.textContent = name;
     elements.temp.textContent = temp;
     elements.text.textContent = weatherCode;
-    elements.precip.textContent = precipProbability;
+    elements.icon.innerHTML = `${iconSvg}`;
+    elements.precipIcon.innerHTML = `${precipSvg}`;
+    elements.precipText.textContent = `${precipProbability}%`;
 
     return itemClone;
 }

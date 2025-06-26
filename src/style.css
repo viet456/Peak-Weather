@@ -217,7 +217,7 @@ body {
   padding: var(--spacing-m);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-m);
+  gap: var(--spacing-l);
 }
 
 #weather-content > section {

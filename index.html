@@ -50,7 +50,7 @@
   <template id="today-details-template">
     <section class="today-details">
       <header class="today-details__header">
-        <h2 class="today-details__title js-today-title"></h2>
+        <h3 class="today-details__title js-today-title"></h3>
       </header>
       <div class="today-details__body">
         <dl class="details-grid">
@@ -108,10 +108,13 @@
       <p class="period-item__name js-period-name"></p>
       <p class="period-item__temp js-period-temp"></p>
       <div class="period-item__condition">
-        <img class="period-item__icon js-period-icon" src="" alt="">
+        <div class="period-item__icon js-period-icon"></div>
         <p class="period-item__description js-period-description"></p>
       </div>
-      <p class="period-item__precip js-period-precip"></p>
+      <div class="period-item__precip">
+        <div class="period-item__precip-icon js-period-precip-icon"></div>
+        <p class="period-item__precip-text js-period-precip-text"></p>
+      </div>
     </li>
   </template>
 
