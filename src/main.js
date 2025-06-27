@@ -38,7 +38,7 @@ async function renderLocationDropdown(locations) {
 
   locations.forEach(location => {
     if (!location || !location.city) {
-      return; 
+      return;
     }
     const locationEl = document.createElement('div');
     locationEl.classList.add('location-result-item');
@@ -60,12 +60,13 @@ async function handleSearch(query) {
     searchResultsContainer.classList.add('hidden');
     searchResultsContainer.innerHTML = '';
     searchInput.classList.remove('is-showing-results');
-    return;
+    return [];
   }
   const locations = await getLocations(query);
   searchInput.classList.add('is-showing-results');
   renderLocationDropdown(locations);
   console.log('API Search Results:', locations);
+  return locations;
 }
 
 // handle user selection of a location
@@ -133,11 +134,45 @@ function init() {
 
   // wait 200ms after last input to pull location matches
   let timeout;
+  let currentResults = [];
+  let lastSearchedQuery = '';
   searchInput.addEventListener('input', (e) => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      handleSearch(e.target.value);
+    const query = e.target.value.trim();
+
+    timeout = setTimeout(async () => {
+      if (query.length < 2) {
+        searchResultsContainer.classList.add('hidden');
+        return;
+      }
+      const locations = await getLocations(query);
+      lastSearchedQuery = query;
+      currentResults = locations || [];
+      renderLocationDropdown(currentResults);
     }, 200);
+  });
+
+  // display results on 'Enter' input
+  searchInput.addEventListener('keydown', async (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      clearTimeout(timeout);
+      const query = e.target.value.trim();
+      if (!query) return;
+
+      let finalResults = currentResults;
+      if (query != lastSearchedQuery) {
+        finalResults = await handleSearch(query);
+        lastSearchedQuery = query;
+        currentResults = finalResults;
+      };
+      if (finalResults && finalResults.length > 0) {
+        const topResult = finalResults[0];
+        handleLocationSelection(topResult);
+      } else {
+        console.log("No results found for:", query);
+      }
+    };
   });
 
   // hide search results when search bar is clicked off of 
