@@ -125,7 +125,6 @@ function init() {
     } else {
       unitToggleBtn.textContent = 'F';
     }
-    console.log(getSystemUnit());
     if (lastLoadedLocation) {
       // rerender weather display
       renderWeather(lastLoadedWeatherData, lastLoadedLocation);
@@ -157,6 +156,7 @@ function init() {
     if (e.key === 'Enter') {
       e.preventDefault();
       clearTimeout(timeout);
+      searchResultsContainer.classList.add('hidden');
       const query = e.target.value.trim();
       if (!query) return;
 
@@ -188,7 +188,6 @@ function init() {
   })
 
   //show San Francisco by default
-  getWeather(37.77, 122.41);
   const defaultLocation = {
     city: "San Francisco",
     state_code: "CA",
@@ -198,10 +197,6 @@ function init() {
     lon: -122.4194
   };
   handleLocationSelection(defaultLocation);
-
-  // getWeather(37.77, 122.41).then(data => {
-  //     displayWeather(data, { name: "San Francisco", country: "United States" });
-  // });
 }
 
 init();

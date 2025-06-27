@@ -11,7 +11,6 @@ export function formatLocationForSearch(location) {
     if (!location || !location.city) return '';
     const { city, state, country_code, state_code } = location;
     const countryCode = toUpperCaseString(country_code);
-    console.log(countryCode);
     // checks if the country uses states/provinces 
     const locationText = stateCountryCodes.includes(countryCode) && state
                         ? `${city}, ${state}, ${countryCode}`

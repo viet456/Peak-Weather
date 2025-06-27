@@ -12,7 +12,6 @@ export async function getLocations(location) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         let data = await response.json();
-        console.log(data.results);
         return data.results || [];
     } catch (error) {
         console.error("Failed to fetch locations:", error);
