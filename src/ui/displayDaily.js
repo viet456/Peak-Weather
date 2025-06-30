@@ -12,7 +12,7 @@ function renderDailyItem(dayData, systemUnit) {
     const elements = {
         day: itemClone.querySelector('.js-daily-day'),
         icon: itemClone.querySelector('.js-daily-icon'),
-        text: itemClone.querySelector('.js-daily-forecast'),
+        weatherDesc: itemClone.querySelector('.js-daily-description'),
         high: itemClone.querySelector('.js-daily-high'),
         low: itemClone.querySelector('.js-daily-low'),
         precipIcon: itemClone.querySelector('.js-daily-precip-icon'),
@@ -32,7 +32,7 @@ function renderDailyItem(dayData, systemUnit) {
     }
     const highTemp = formatTemp(dayData.tempMax, systemUnit);
     const lowTemp = formatTemp(dayData.tempMin, systemUnit);
-    const description = getWeatherDescription(dayData.weatherCode);
+    const weatherDesc = getWeatherDescription(dayData.weatherCode);
     const iconName = getWeatherIconName(dayData);
     const iconSvg = getWeatherIcon(iconName);
     const precipProbability = dayData.precipProbabilityMax;
@@ -48,7 +48,7 @@ function renderDailyItem(dayData, systemUnit) {
 
     elements.day.innerHTML = `${weekday}`;
     elements.icon.innerHTML = `${iconSvg}`;
-    elements.text.textContent = description;
+    elements.weatherDesc.textContent = weatherDesc;
     elements.high.textContent = highTemp;
     elements.low.textContent = lowTemp;
     elements.precipIcon.innerHTML = `${precipSvg}`;

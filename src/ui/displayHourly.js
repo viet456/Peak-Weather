@@ -12,14 +12,14 @@ function renderHourlyItem(hourData, systemUnit) {
         time: itemClone.querySelector('.js-hourly-time'),
         temp: itemClone.querySelector('.js-hourly-temp'),
         icon: itemClone.querySelector('.js-hourly-icon'),
-        text: itemClone.querySelector('.js-hourly-description'),
+        weatherDesc: itemClone.querySelector('.js-hourly-description'),
         precipIcon: itemClone.querySelector('.js-hourly-precip-icon'),
         precipText: itemClone.querySelector('.js-hourly-precip-text'),
     }
 
     const time = formatTime(hourData.date, { includeMinutes: false });
     const temp = formatTemp(hourData.temperature, systemUnit);
-    const weatherCode = getWeatherDescription(hourData.weatherCode);
+    const weatherDesc = getWeatherDescription(hourData.weatherCode);
     const iconName = getWeatherIconName(hourData);
     const iconSvg = getWeatherIcon(iconName);
     const precipProbability = hourData.precipProbability;
@@ -34,7 +34,7 @@ function renderHourlyItem(hourData, systemUnit) {
     elements.time.textContent = time;
     elements.icon.innerHTML = `${iconSvg}`;
     elements.temp.textContent = temp;
-    //elements.text.textContent = weatherCode;
+    //elements.text.textContent = weatherDesc;
     elements.precipIcon.innerHTML = `${precipSvg}`;
     elements.precipText.textContent = `${precipProbability}%`;
 

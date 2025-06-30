@@ -11,7 +11,7 @@ function renderPeriodItem(periodData, systemUnit) {
     const elements = {
         name: itemClone.querySelector('.js-period-name'),
         temp: itemClone.querySelector('.js-period-temp'),
-        text: itemClone.querySelector('.js-period-description'),
+        weatherDesc: itemClone.querySelector('.js-period-description'),
         icon: itemClone.querySelector('.js-period-icon'),
         precipIcon: itemClone.querySelector('.js-period-precip-icon'),
         precipText: itemClone.querySelector('.js-period-precip-text'),
@@ -19,7 +19,7 @@ function renderPeriodItem(periodData, systemUnit) {
 
     const name = periodData.name;
     const temp = formatTemp(periodData.temperature, systemUnit);
-    const weatherCode = getWeatherDescription(periodData.weatherCode);
+    const weatherDesc = getWeatherDescription(periodData.weatherCode);
     const iconName = getWeatherIconName(periodData);
     const iconSvg = getWeatherIcon(iconName);
     const precipProbability = periodData.precipProbability;
@@ -33,7 +33,7 @@ function renderPeriodItem(periodData, systemUnit) {
 
     elements.name.textContent = name;
     elements.temp.textContent = temp;
-    elements.text.textContent = weatherCode;
+    elements.weatherDesc.textContent = weatherDesc;
     elements.icon.innerHTML = `${iconSvg}`;
     elements.precipIcon.innerHTML = `${precipSvg}`;
     elements.precipText.textContent = `${precipProbability}%`;

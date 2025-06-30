@@ -14,13 +14,13 @@ export function displayCurrentWeather(currentData, location, systemUnit) {
         time: clone.querySelector('.js-current-time'),
         temp: clone.querySelector('.js-current-temp'),
         icon: clone.querySelector('.js-current-icon'),
-        text: clone.querySelector('.js-current-text')
+        weatherDesc: clone.querySelector('.js-current-description')
     };
 
     const formattedLocation = formatLocationForDisplay(location);
     const formattedTime = formatTime(currentData.time);
     const temperature = formatTemp(currentData.temperature, systemUnit);
-    const weatherCode = getWeatherDescription(currentData.weatherCode);
+    const weatherDesc = getWeatherDescription(currentData.weatherCode);
     const iconName = getWeatherIconName(currentData);
     const iconSvg = getWeatherIcon(iconName);
 
@@ -28,7 +28,7 @@ export function displayCurrentWeather(currentData, location, systemUnit) {
     elements.time.textContent = `As of ${formattedTime}`;
     elements.temp.textContent = `${temperature}`;
     elements.icon.innerHTML = iconSvg;
-    elements.text.textContent = weatherCode;
+    elements.weatherDesc.textContent = weatherDesc;
 
     const container = document.getElementById('current-weather-container');
     container.innerHTML = '';

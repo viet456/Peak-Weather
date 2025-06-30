@@ -11,7 +11,7 @@ export function displayTodayWeather(todayData, location, systemUnit) {
 
     const elements = {
         title: clone.querySelector('.js-today-title'),
-        forecast: clone.querySelector('.js-today-forecast-text'),
+        weatherDesc: clone.querySelector('.js-today-forecast-description'),
         forecastIcon: clone.querySelector('.js-today-forecast-icon'),
         highLow: clone.querySelector('.js-today-high-low'),
         wind: clone.querySelector('.js-today-wind'),
@@ -22,7 +22,7 @@ export function displayTodayWeather(todayData, location, systemUnit) {
         uvIndex: clone.querySelector('.js-today-uv-index'),
     }
 
-    const forecast = getWeatherDescription(todayData.weatherCode);
+    const weatherDesc = getWeatherDescription(todayData.weatherCode);
     const iconName = getWeatherIconName(todayData);
     const iconSvg = getWeatherIcon(iconName);
     const formattedMax = formatTemp(todayData.tempMax, systemUnit);
@@ -36,7 +36,7 @@ export function displayTodayWeather(todayData, location, systemUnit) {
     const uvIndex = todayData.uvIndexMax;
 
     elements.title.textContent = `Weather Today in ${formatLocationForDisplay(location)}`;
-    elements.forecast.innerHTML = `${forecast}`;
+    elements.weatherDesc.innerHTML = `${weatherDesc}`;
     elements.forecastIcon.innerHTML = `${iconSvg}`;
     elements.highLow.textContent = `${formattedMax} / ${formattedMin}`;
     elements.wind.textContent = `${windSpeed} with gusts of ${windGusts}`;
